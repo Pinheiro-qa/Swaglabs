@@ -102,6 +102,7 @@ class Page {
         cy.get(el.botaoContinue).click()
         cy.get(el.botaoFinalizar).click()
         cy.get(el.botaoVoltar).click()
+        cy.get(el.titlePage).should('have.text', 'Products')
         cy.get(el.botaoMenu).click()
         cy.get(el.botaoReset).click()
         cy.get(el.botaoLogout).click()
