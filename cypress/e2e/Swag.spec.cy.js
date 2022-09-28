@@ -1,3 +1,6 @@
+///<reference types="cypress"/>
+import Page from "../support/Swag/SwagLabsPage";
+
 describe('SwagLabs', () => {
   
     beforeEach(() => {
@@ -6,130 +9,42 @@ describe('SwagLabs', () => {
       })
 
     it('Colocar produto no carrinho', () => {
-        cy.get('[data-test="add-to-cart-sauce-labs-backpack"]').click()
-        cy.get('.shopping_cart_link').click()
-        cy.get('.title').should('have.text', 'Your Cart')
-        cy.get('#react-burger-menu-btn').click()
-        cy.get('#reset_sidebar_link').click()
-        cy.get('#logout_sidebar_link').click()
+        Page.produto();
     })
 
     it('Remover produto do carrinho', () => {
-        cy.get('[data-test="add-to-cart-sauce-labs-backpack"]').click()
-        cy.get('.shopping_cart_link').click()
-        cy.get('[data-test="remove-sauce-labs-backpack"]').click()
-        cy.get('.inventory_item_name').should('not.exist')
-        cy.get('#react-burger-menu-btn').click()
-        cy.get('#reset_sidebar_link').click()
-        cy.get('#logout_sidebar_link').click()
-    });
+        Page.remover();
+    })
 
     it('Acessar pagina de detalhes do produto', () => {
-        cy.get('[data-test="add-to-cart-sauce-labs-bolt-t-shirt"]').click()
-        cy.get('.shopping_cart_link').click()
-        cy.get('.inventory_item_name').click()
-        cy.get('.inventory_details_img').should('exist')
-        cy.get('#react-burger-menu-btn').click()
-        cy.get('#reset_sidebar_link').click()
-        cy.get('#logout_sidebar_link').click()
+        Page.acessarDetalhes();
     })
 
     it('Acessar a página de identificar o comprador', () => {
-        cy.get('[data-test="add-to-cart-sauce-labs-backpack"]').click()
-        cy.get('[data-test="add-to-cart-sauce-labs-bolt-t-shirt"]').click()
-        cy.get('[data-test="add-to-cart-sauce-labs-bike-light"]').click()
-        cy.get('.shopping_cart_link').click()
-        cy.get('[data-test="checkout"]').click()
-        cy.get('.title').should('have.text', 'Checkout: Your Information')
-        cy.get('#react-burger-menu-btn').click()
-        cy.get('#reset_sidebar_link').click()
-        cy.get('#logout_sidebar_link').click()
+        Page.acessarDetalhes();
     })
 
     it('Acessar novamente o carrinho clicando no botao -Cancel- na area de Checkout', () => {
-        cy.get('[data-test="add-to-cart-sauce-labs-backpack"]').click()
-        cy.get('[data-test="add-to-cart-sauce-labs-bolt-t-shirt"]').click()
-        cy.get('[data-test="add-to-cart-sauce-labs-bike-light"]').click()
-        cy.get('.shopping_cart_link').click()
-        cy.get('[data-test="checkout"]').click()
-        cy.get('[data-test="cancel"]').click()
-        cy.get('.title').should('have.text', 'Your Cart')
-        cy.get('#react-burger-menu-btn').click()
-        cy.get('#reset_sidebar_link').click()
-        cy.get('#logout_sidebar_link').click()
+        Page.retornaCarrinho();
     })
 
     it('Na area de Checkout: Overview preencher os campos e clicar no botao Continue', () => {
-        cy.get('[data-test="add-to-cart-sauce-labs-backpack"]').click()
-        cy.get('[data-test="add-to-cart-sauce-labs-bolt-t-shirt"]').click()
-        cy.get('[data-test="add-to-cart-sauce-labs-bike-light"]').click()
-        cy.get('.shopping_cart_link').click()
-        cy.get('[data-test="checkout"]').click()
-        cy.get('[data-test="firstName"]').type('Joe')
-        cy.get('[data-test="lastName"]').type('Pinetree')
-        cy.get('[data-test="postalCode"]').type('60147075')
-        cy.get('[data-test="continue"]').click()
-        cy.get('.title').should('have.text', 'Checkout: Overview')
-        cy.get('#react-burger-menu-btn').click()
-        cy.get('#reset_sidebar_link').click()
-        cy.get('#logout_sidebar_link').click()
+        Page.preencherCampos();
     })
 
     it('Na area de Checkout: Overview cancelar a compra clicando no botao Cancel', () => {
-        cy.get('[data-test="add-to-cart-sauce-labs-backpack"]').click()
-        cy.get('[data-test="add-to-cart-sauce-labs-bolt-t-shirt"]').click()
-        cy.get('[data-test="add-to-cart-sauce-labs-bike-light"]').click()
-        cy.get('.shopping_cart_link').click()
-        cy.get('[data-test="checkout"]').click()
-        cy.get('[data-test="firstName"]').type('Joe')
-        cy.get('[data-test="lastName"]').type('Pinetree')
-        cy.get('[data-test="postalCode"]').type('60147075')
-        cy.get('[data-test="continue"]').click()
-        cy.get('[data-test="cancel"]').click()
-        cy.get('.title').should('have.text', 'Products')   
-        cy.get('#react-burger-menu-btn').click()
-        cy.get('#reset_sidebar_link').click()
-        cy.get('#logout_sidebar_link').click()
+        Page.cancelaCompra();
     })
 
     it('Acionar o botao Checkout no Carrinho sem produtos', () => {
-        cy.get('.shopping_cart_link').click()
-        cy.get('[data-test="checkout"]').click()
-        cy.get('.cart_list > :nth-child(5)').should('not.exist')
-        cy.get('#react-burger-menu-btn').click()
-        cy.get('#reset_sidebar_link').click()
-        cy.get('#logout_sidebar_link').click()
+        Page.checkoutSemProdutos();
     })
 
     it('Ao finalizar a compra, acionar o botão Back Home deve retornar a pagina Products', () => {
-        cy.get('[data-test="add-to-cart-sauce-labs-backpack"]').click()
-        cy.get('[data-test="add-to-cart-sauce-labs-bolt-t-shirt"]').click()
-        cy.get('[data-test="add-to-cart-sauce-labs-bike-light"]').click()
-        cy.get('.shopping_cart_link').click()
-        cy.get('[data-test="checkout"]').click()
-        cy.get('[data-test="firstName"]').type('Joe')
-        cy.get('[data-test="lastName"]').type('Pinetree')
-        cy.get('[data-test="postalCode"]').type('60147075')
-        cy.get('[data-test="continue"]').click()
-        cy.get('[data-test="finish"]').click()
-        cy.get('[data-test="back-to-products"]').click()
-        cy.get('#react-burger-menu-btn').click()
-        cy.get('#reset_sidebar_link').click()
-        cy.get('#logout_sidebar_link').click()
+        Page.acionarBotaoVoltar();
     })
 
     it('Zerar proutos do carrinho utilizando o Reset App State no menu do lado superior esquerdo', () => {
-        cy.get('[data-test="add-to-cart-sauce-labs-backpack"]').click()
-        cy.get('[data-test="add-to-cart-sauce-labs-bolt-t-shirt"]').click()
-        cy.get('[data-test="add-to-cart-sauce-labs-bike-light"]').click()
-        cy.get('.shopping_cart_link').click()
-        cy.get('#react-burger-menu-btn').click()
-        cy.get('#reset_sidebar_link').click()
-        cy.get('#react-burger-cross-btn').click()
-        cy.get('.shopping_cart_link').click()
-        cy.get('.cart_list > :nth-child(5)').should('not.exist')
-        cy.get('#react-burger-menu-btn').click()
-        cy.get('#reset_sidebar_link').click()
-        cy.get('#logout_sidebar_link').click()
+        Page.zerarProdutosComReset();
     })
 })
