@@ -24,11 +24,5 @@ export const ELEMENTS = {
     cartLabsOnesie: '[id="add-to-cart-sauce-labs-onesie"]',
     cartRedTshirt: '[id="add-to-cart-test.allthethings()-t-shirt-(red)"]',
     inventoryItemName: '[class="inventory_item_name"]',
-    titlePage: '[class="title"]'
-   
-    
-    
-
-    
-    
+    titlePage: '[class="title"]'    
 }

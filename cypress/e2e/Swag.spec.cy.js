@@ -4,9 +4,8 @@ import Page from "../support/Swag/SwagLabsPage";
 describe('SwagLabs', () => {
   
     beforeEach(() => {
-        cy.visit('https://www.saucedemo.com/')
-        cy.login()
-      })
+       cy.login()
+    })
 
     it('Colocar produto no carrinho', () => {
         Page.produto();
