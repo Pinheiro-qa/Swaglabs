@@ -1,0 +1,6 @@
+Cypress.Commands.add("adicionaArquivo", () => {
+    cy.get('elemento da pagina']').selectFile({
+        contents: Cypress.Buffer.from('file contents'),
+        fileName: 'nome do arquivo selecionado.pdf',
+        lastModified: Date.now(),
+    })
