@@ -1,4 +1,5 @@
 ///<reference types="cypress"/>
+import { afterEach } from "mocha";
 import Page from "../support/Swag/SwagLabsPage";
 
 describe('SwagLabs', () => {
@@ -46,4 +47,5 @@ describe('SwagLabs', () => {
     it('Zerar proutos do carrinho utilizando o Reset App State no menu do lado superior esquerdo', () => {
         Page.zerarProdutosComReset();
     })
+   
 })
